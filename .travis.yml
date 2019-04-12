@@ -16,12 +16,12 @@ install:
 before_script:
   - psql -c 'create database "allie-app-aloo-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 
-# before_deploy:
-#   - npm run build-client # make the bundle
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE
+before_deploy:
+  - npm run build-client # make the bundle
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: allie-app-aloo # see README
+  api_key:
+    secure: 'nqWcq/aASTPJUUa2AVPA59R+rG43FJSYvPKFY4bgRxzj4jXMF60fph0twetpcJrP+9m8iz1/D6qmGLp6ZP2m8iZmi06jiJ5uxLKkuGMwliYtU4pNhZrMXRbOYTpUbB/bz3aiFWOa1Is/eiX1QPGwAvwA/RldWe8ya8TgzREfInhw5DZMoCfMjK0bqn66+uOLjit6CRTi8jwJ2UC8lTCaJlXGYeMFgiMXxERAMloqG+DVI5TIKvOpqC7h85ckSc+QIu15GqvfS5VO0YuVkzxhZOeeOkllu+L+2y68q8vGHLlbTPit7Yr0j8xv1jcfJ/Lt37s0GcdzVsrUDFf7PJ4VlBVwBY1KbyryPd2U0dfmrbDLU4jmG7uFXCx/b9eVW9dsxjsQsIomixKKhl8nq4DrAWTgG6yjOO3Zx+wpB5r4yBtBzuj80JUa2yIZ+2tHan2r128EWxCIlFbHlkuVas7iQePNGCsqfQ0Fr2gUWLWpGfwsHqYc1j9Gqkhcr1rgPwSHd9rDpAbxFC+FuLZlyvFowYWhryPVCyc+YbYSTKnCMG6l6KnUgUb/YvS/RF6N1NCgQOtqK/o53ZYuwKWIqWiiUBH2iyJ36OFZubOVsWZKjny7w0pL9F/HYOi8NHW3lZKZoRn47iVqI4IF4nC5tsMcfUvQadVhSmDUzAxnB0zt9cg='
